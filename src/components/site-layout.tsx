@@ -159,24 +159,25 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               <div className="text-xs font-semibold text-white/80 mb-3 tracking-wide">تابعنا على</div>
               <div className="flex items-center gap-2.5 flex-wrap">
                 {[
-                  { icon: Facebook, href: "https://facebook.com", label: "فيسبوك", color: "hover:bg-[#1877F2] hover:border-[#1877F2]" },
-                  { icon: Twitter, href: "https://twitter.com", label: "تويتر", color: "hover:bg-black hover:border-black" },
-                  { icon: Instagram, href: "https://instagram.com", label: "انستقرام", color: "hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:border-transparent" },
-                  { icon: SnapchatIcon, href: "https://snapchat.com", label: "سناب شات", color: "hover:bg-[#FFFC00] hover:text-black hover:border-[#FFFC00]" },
-                  { icon: TikTokIcon, href: "https://tiktok.com", label: "تيك توك", color: "hover:bg-black hover:border-black" },
-                ].map(({ icon: Icon, href, label, color }) => (
+                  { icon: Facebook, href: "https://facebook.com", label: "فيسبوك", bg: "bg-[#1877F2]", text: "text-white" },
+                  { icon: Twitter, href: "https://twitter.com", label: "تويتر", bg: "bg-black", text: "text-white" },
+                  { icon: Instagram, href: "https://instagram.com", label: "انستقرام", bg: "bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888]", text: "text-white" },
+                  { icon: SnapchatIcon, href: "https://snapchat.com", label: "سناب شات", bg: "bg-[#FFFC00]", text: "text-black" },
+                  { icon: TikTokIcon, href: "https://tiktok.com", label: "تيك توك", bg: "bg-black", text: "text-white" },
+                ].map(({ icon: Icon, href, label, bg, text }) => (
                   <a
                     key={label}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className={`w-11 h-11 rounded-full bg-white/5 border border-white/15 flex items-center justify-center text-white/80 hover:text-white hover:scale-110 transition-all duration-200 ${color}`}
+                    className={`w-11 h-11 rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-200 ${bg} ${text}`}
                   >
                     <Icon className="w-[18px] h-[18px]" />
                   </a>
                 ))}
               </div>
+
 
             </div>
 
