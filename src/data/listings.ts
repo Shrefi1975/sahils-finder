@@ -78,7 +78,7 @@ export const categories: Category[] = [
       { id: "f4", title: "مكتب خشب زان مع كرسي", price: 1800, image: img("photo-1580480055273-228ff5388ef8"), description: "مكتب خشبي فاخر، خشب زان طبيعي، مع كرسي جلد.", location: "جدة", date: "2026-07-16", condition: "مستعمل" },
       { id: "f5", title: "خزانة ملابس 4 أبواب", price: 2400, image: img("photo-1595428774223-ef52624120d2"), description: "دولاب ملابس واسع، 4 أبواب، مرايا، درفة سحب.", location: "جدة", date: "2026-07-08", condition: "جديد" },
       { id: "f6", title: "جلسة أرضية عربية فاخرة", price: 3800, image: img("photo-1493663284031-b7e3aefcae8e"), description: "جلسة عربية كاملة، مساند، سجاد، ذوق راقي.", location: "جدة", date: "2026-07-14", condition: "جديد" },
-      { id: "f7", title: "غرفة أطفال كاملة", price: 3500, image: img("photo-1558877385-8be3781a3d1c"), description: "غرفة أطفال، سرير، مكتب، دولاب، ألوان زاهية.", location: "جدة", date: "2026-07-11", condition: "جديد" },
+      { id: "f7", title: "غرفة أطفال كاملة", price: 3500, image: img("photo-1615529162924-f8605388461d"), description: "غرفة أطفال، سرير، مكتب، دولاب، ألوان زاهية.", location: "جدة", date: "2026-07-11", condition: "جديد" },
       { id: "f8", title: "طقم كراسي حديقة روطان", price: 1650, image: img("photo-1519974719765-e6559eac2575"), description: "طقم جلسة خارجية روطان، طاولة و4 كراسي مع مساند.", location: "جدة", date: "2026-07-09", condition: "جديد" },
     ],
   },
