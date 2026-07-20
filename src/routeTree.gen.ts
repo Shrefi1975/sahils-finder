@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PageSlugRouteImport } from './routes/page.$slug'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as ListingCategoryIdRouteImport } from './routes/listing.$category.$id'
 
@@ -22,6 +23,11 @@ const AuthRoute = AuthRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PageSlugRoute = PageSlugRouteImport.update({
+  id: '/page/$slug',
+  path: '/page/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
@@ -39,12 +45,14 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/page/$slug': typeof PageSlugRoute
   '/listing/$category/$id': typeof ListingCategoryIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/page/$slug': typeof PageSlugRoute
   '/listing/$category/$id': typeof ListingCategoryIdRoute
 }
 export interface FileRoutesById {
@@ -52,20 +60,38 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/page/$slug': typeof PageSlugRoute
   '/listing/$category/$id': typeof ListingCategoryIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/category/$slug' | '/listing/$category/$id'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/category/$slug'
+    | '/page/$slug'
+    | '/listing/$category/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/category/$slug' | '/listing/$category/$id'
-  id: '__root__' | '/' | '/auth' | '/category/$slug' | '/listing/$category/$id'
+  to:
+    | '/'
+    | '/auth'
+    | '/category/$slug'
+    | '/page/$slug'
+    | '/listing/$category/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth'
+    | '/category/$slug'
+    | '/page/$slug'
+    | '/listing/$category/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthRoute: typeof AuthRoute
   CategorySlugRoute: typeof CategorySlugRoute
+  PageSlugRoute: typeof PageSlugRoute
   ListingCategoryIdRoute: typeof ListingCategoryIdRoute
 }
 
@@ -83,6 +109,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/page/$slug': {
+      id: '/page/$slug'
+      path: '/page/$slug'
+      fullPath: '/page/$slug'
+      preLoaderRoute: typeof PageSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/category/$slug': {
@@ -106,6 +139,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
   CategorySlugRoute: CategorySlugRoute,
+  PageSlugRoute: PageSlugRoute,
   ListingCategoryIdRoute: ListingCategoryIdRoute,
 }
 export const routeTree = rootRouteImport
