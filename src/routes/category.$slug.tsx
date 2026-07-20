@@ -1,7 +1,7 @@
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
 import { ListingCard } from "@/components/listing-card";
-import { getCategoryBySlug } from "@/data/listings";
+import { getCategoryBySlug, type Listing } from "@/data/listings";
 
 export const Route = createFileRoute("/category/$slug")({
   loader: ({ params }) => {
@@ -47,7 +47,7 @@ function CategoryPage() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {category.listings.map((l: typeof category.listings[number]) => (
+          {category.listings.map((l: Listing) => (
             <ListingCard key={l.id} listing={l} categorySlug={category.slug} />
           ))}
         </div>
