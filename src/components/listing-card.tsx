@@ -23,6 +23,13 @@ export function ListingCard({
           src={listing.image}
           alt={listing.title}
           loading="lazy"
+          onError={(e) => {
+            const target = e.currentTarget;
+            if (!target.dataset.fallback) {
+              target.dataset.fallback = "1";
+              target.src = `https://picsum.photos/seed/${listing.id}/800/600`;
+            }
+          }}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         <span className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 bg-background/95 backdrop-blur text-[10px] sm:text-[11px] font-medium px-1.5 sm:px-2 py-0.5 rounded-md border">
