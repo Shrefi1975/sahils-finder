@@ -24,17 +24,35 @@ function Home() {
     <SiteLayout>
       <section className="relative border-b overflow-hidden">
         <AnimatedHeroBg />
-        <div className="container mx-auto px-4 py-16 md:py-24 relative">
-          <h1 className="text-3xl md:text-5xl font-bold mb-3 bg-gradient-to-l from-foreground to-foreground/70 bg-clip-text">
-            كل ما تحتاجه في مكان واحد
+        <div className="container mx-auto px-4 py-20 md:py-28 relative text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur border border-white/20 text-white/90 text-xs font-medium mb-5">
+            <span className="w-2 h-2 rounded-full bg-[#f5a623] animate-pulse" />
+            أكبر منصة إعلانات مبوبة في المملكة
+          </div>
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-4 text-white leading-tight drop-shadow-sm">
+            كل ما تحتاجه <span className="text-[#f5a623]">في مكان واحد</span>
           </h1>
-          <p className="text-muted-foreground text-lg mb-6 max-w-2xl">
-            تصفح الإعلانات المميزة من جميع أنحاء المملكة، أو اختر قسماً للبدء.
+          <p className="text-white/85 text-base md:text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
+            تصفح آلاف الإعلانات المميزة من جميع أنحاء المملكة، أو اختر قسماً للبدء بالبيع والشراء بثقة.
           </p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="#categories"
+              className="h-12 px-6 rounded-lg bg-white text-primary font-semibold text-sm inline-flex items-center hover:bg-white/95 transition shadow-lg"
+            >
+              تصفح الأقسام
+            </a>
+            <a
+              href="#featured"
+              className="h-12 px-6 rounded-lg bg-white/10 border border-white/25 text-white font-semibold text-sm inline-flex items-center hover:bg-white/20 transition backdrop-blur"
+            >
+              أحدث الإعلانات
+            </a>
+          </div>
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-8">
+      <section id="categories" className="container mx-auto px-4 py-10 scroll-mt-24">
         <h2 className="text-xl font-bold mb-4">تصفح الأقسام</h2>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
           {categories.map((cat) => (
@@ -56,7 +74,8 @@ function Home() {
         </div>
       </section>
 
-      <section className="container mx-auto px-4 py-8">
+
+      <section id="featured" className="container mx-auto px-4 py-10 scroll-mt-24">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-xl font-bold">إعلانات مميزة</h2>
         </div>
