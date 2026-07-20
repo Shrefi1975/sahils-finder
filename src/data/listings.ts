@@ -32,7 +32,7 @@ export const categories: Category[] = [
       { id: "c3", title: "لكزس ES 350 موديل 2021", price: 165000, image: img("photo-1606664515524-ed2f786a0bd6"), description: "لكزس ES فل كامل، لون أبيض، داخلية بيج، حالة ممتازة.", location: "جدة", date: "2026-07-10", condition: "مستعمل" },
       { id: "c4", title: "نيسان باترول 2023 بلاتينيوم", price: 285000, image: img("photo-1533473359331-0135ef1b58bf"), description: "باترول بلاتينيوم، دبل، فتحة، شاشات خلفية، ممشى قليل.", location: "جدة", date: "2026-07-12", condition: "مستعمل" },
       { id: "c5", title: "مرسيدس E200 موديل 2020", price: 175000, image: img("photo-1618843479313-40f8afb4b4d8"), description: "مرسيدس E200 AMG kit، لون أسود، جلد أحمر، فل الفل.", location: "جدة", date: "2026-07-08", condition: "مستعمل" },
-      { id: "c6", title: "فورد F-150 رابتر 2022", price: 320000, image: img("photo-1595758228888-9f9c9d1c88e2"), description: "رابتر V6 تويين تيربو، حالة الوكالة، دفع رباعي.", location: "جدة", date: "2026-07-05", condition: "مستعمل" },
+      { id: "c6", title: "فورد F-150 رابتر 2022", price: 320000, image: img("photo-1595758376634-42dee2a68eee"), description: "رابتر V6 تويين تيربو، حالة الوكالة، دفع رباعي.", location: "جدة", date: "2026-07-05", condition: "مستعمل" },
       { id: "c7", title: "كيا سيراتو 2024 جديدة", price: 78000, image: img("photo-1580273916550-e323be2ae537"), description: "سيراتو 2024 صفر، اقتصادية بالوقود، ضمان شامل.", location: "جدة", date: "2026-07-19", condition: "جديد" },
       { id: "c8", title: "بي إم دبليو X5 موديل 2021", price: 245000, image: img("photo-1555215695-3004980ad54e"), description: "BMW X5 فل كامل، بانوراما، دفع رباعي، حالة نظيفة.", location: "جدة", date: "2026-07-14", condition: "مستعمل" },
     ],
