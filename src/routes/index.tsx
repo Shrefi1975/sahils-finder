@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
 import { ListingCard } from "@/components/listing-card";
+import { AnimatedHeroBg } from "@/components/animated-hero-bg";
+import { FloatingSales } from "@/components/floating-sales";
 import { categories, allListings } from "@/data/listings";
 
 export const Route = createFileRoute("/")({
@@ -20,9 +22,10 @@ function Home() {
 
   return (
     <SiteLayout>
-      <section className="bg-gradient-to-l from-primary/10 via-primary/5 to-transparent border-b">
-        <div className="container mx-auto px-4 py-10 md:py-14">
-          <h1 className="text-3xl md:text-4xl font-bold mb-3">
+      <section className="relative border-b overflow-hidden">
+        <AnimatedHeroBg />
+        <div className="container mx-auto px-4 py-16 md:py-24 relative">
+          <h1 className="text-3xl md:text-5xl font-bold mb-3 bg-gradient-to-l from-foreground to-foreground/70 bg-clip-text">
             كل ما تحتاجه في مكان واحد
           </h1>
           <p className="text-muted-foreground text-lg mb-6 max-w-2xl">
@@ -63,6 +66,8 @@ function Home() {
           ))}
         </div>
       </section>
+
+      <FloatingSales />
     </SiteLayout>
   );
 }
