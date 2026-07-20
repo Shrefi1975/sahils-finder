@@ -9,10 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as ListingCategoryIdRouteImport } from './routes/listing.$category.$id'
 
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -31,36 +37,47 @@ const ListingCategoryIdRoute = ListingCategoryIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/category/$slug': typeof CategorySlugRoute
   '/listing/$category/$id': typeof ListingCategoryIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/category/$slug': typeof CategorySlugRoute
   '/listing/$category/$id': typeof ListingCategoryIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
   '/category/$slug': typeof CategorySlugRoute
   '/listing/$category/$id': typeof ListingCategoryIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/category/$slug' | '/listing/$category/$id'
+  fullPaths: '/' | '/auth' | '/category/$slug' | '/listing/$category/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/category/$slug' | '/listing/$category/$id'
-  id: '__root__' | '/' | '/category/$slug' | '/listing/$category/$id'
+  to: '/' | '/auth' | '/category/$slug' | '/listing/$category/$id'
+  id: '__root__' | '/' | '/auth' | '/category/$slug' | '/listing/$category/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthRoute: typeof AuthRoute
   CategorySlugRoute: typeof CategorySlugRoute
   ListingCategoryIdRoute: typeof ListingCategoryIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -87,6 +104,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthRoute: AuthRoute,
   CategorySlugRoute: CategorySlugRoute,
   ListingCategoryIdRoute: ListingCategoryIdRoute,
 }

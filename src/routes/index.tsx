@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
 import { ListingCard } from "@/components/listing-card";
+import { AnimatedHeroBg } from "@/components/animated-hero-bg";
+import { FloatingSales } from "@/components/floating-sales";
 import { categories, allListings } from "@/data/listings";
 
 export const Route = createFileRoute("/")({
