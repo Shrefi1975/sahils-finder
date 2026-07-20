@@ -53,39 +53,60 @@ function Home() {
         </div>
       </section>
 
-      <section id="categories" className="container mx-auto px-4 py-10 scroll-mt-24">
-        <h2 className="text-xl font-bold mb-4">تصفح الأقسام</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-          {categories.map((cat) => (
-            <Link
-              key={cat.slug}
-              to="/category/$slug"
-              params={{ slug: cat.slug }}
-              className="bg-card border rounded-xl p-4 text-center hover:border-primary/50 hover:shadow-md transition-all group"
-            >
-              <div className="text-4xl mb-2 group-hover:scale-110 transition-transform">
-                {cat.icon}
+      <div className="container mx-auto px-4 py-8">
+        <div className="flex flex-col lg:flex-row gap-6">
+          {/* Categories sidebar — visually on the right in RTL */}
+          <aside id="categories" className="lg:w-64 shrink-0 scroll-mt-24">
+            <div className="bg-card border rounded-2xl overflow-hidden shadow-sm sticky top-32">
+              <div className="px-4 py-3 border-b bg-gradient-to-l from-primary/10 to-transparent">
+                <h2 className="font-bold text-sm text-foreground">تصفح الأقسام</h2>
               </div>
-              <div className="font-semibold text-sm">{cat.name}</div>
-              <div className="text-xs text-muted-foreground mt-1">
-                {cat.listings.length} إعلان
+              <ul className="divide-y">
+                {categories.map((cat) => {
+                  const active = false;
+                  return (
+                    <li key={cat.slug}>
+                      <Link
+                        to="/category/$slug"
+                        params={{ slug: cat.slug }}
+                        className={`flex items-center justify-between gap-3 px-4 py-3 text-sm hover:bg-muted/60 transition group ${
+                          active ? "bg-primary/5" : ""
+                        }`}
+                      >
+                        <span className="flex items-center gap-2.5 min-w-0">
+                          <span className="text-xl shrink-0">{cat.icon}</span>
+                          <span className="font-medium text-foreground group-hover:text-primary transition truncate">
+                            {cat.name}
+                          </span>
+                        </span>
+                        <span className="text-[11px] text-muted-foreground bg-muted rounded-full px-2 py-0.5 shrink-0">
+                          {cat.listings.length}
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </aside>
+
+          {/* Main content */}
+          <div className="flex-1 min-w-0">
+            <section id="featured" className="scroll-mt-24">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl md:text-2xl font-bold">إعلانات مميزة</h2>
+                <span className="text-xs text-muted-foreground">{featured.length} إعلان</span>
               </div>
-            </Link>
-          ))}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                {featured.map((l) => (
+                  <ListingCard key={l.id} listing={l} categorySlug={l.categorySlug} />
+                ))}
+              </div>
+            </section>
+          </div>
         </div>
-      </section>
+      </div>
 
-
-      <section id="featured" className="container mx-auto px-4 py-10 scroll-mt-24">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold">إعلانات مميزة</h2>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {featured.map((l) => (
-            <ListingCard key={l.id} listing={l} categorySlug={l.categorySlug} />
-          ))}
-        </div>
-      </section>
 
       <FloatingSales />
     </SiteLayout>
