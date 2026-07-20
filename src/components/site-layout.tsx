@@ -147,26 +147,28 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               <p className="text-sm text-white/60 leading-relaxed mb-5">
                 منصة الإعلانات المبوبة الأولى في المملكة، تجمع بين الثقة والجودة والتجربة الراقية.
               </p>
-              <div className="flex items-center gap-2.5">
+              <div className="text-xs font-semibold text-white/80 mb-3 tracking-wide">تابعنا على</div>
+              <div className="flex items-center gap-2.5 flex-wrap">
                 {[
-                  { icon: Twitter, href: "https://twitter.com", label: "تويتر" },
-                  { icon: TikTokIcon, href: "https://tiktok.com", label: "تيك توك" },
-                  { icon: SnapchatIcon, href: "https://snapchat.com", label: "سناب شات" },
-                  { icon: Instagram, href: "https://instagram.com", label: "انستقرام" },
-                  { icon: Facebook, href: "https://facebook.com", label: "فيسبوك" },
-                ].map(({ icon: Icon, href, label }) => (
+                  { icon: Facebook, href: "https://facebook.com", label: "فيسبوك", color: "hover:bg-[#1877F2] hover:border-[#1877F2]" },
+                  { icon: Twitter, href: "https://twitter.com", label: "تويتر", color: "hover:bg-black hover:border-black" },
+                  { icon: Instagram, href: "https://instagram.com", label: "انستقرام", color: "hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:border-transparent" },
+                  { icon: SnapchatIcon, href: "https://snapchat.com", label: "سناب شات", color: "hover:bg-[#FFFC00] hover:text-black hover:border-[#FFFC00]" },
+                  { icon: TikTokIcon, href: "https://tiktok.com", label: "تيك توك", color: "hover:bg-black hover:border-black" },
+                ].map(({ icon: Icon, href, label, color }) => (
                   <a
                     key={label}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 hover:border-white/25 transition"
+                    className={`w-11 h-11 rounded-full bg-white/5 border border-white/15 flex items-center justify-center text-white/80 hover:text-white hover:scale-110 transition-all duration-200 ${color}`}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className="w-[18px] h-[18px]" />
                   </a>
                 ))}
               </div>
+
             </div>
 
             <FooterCol

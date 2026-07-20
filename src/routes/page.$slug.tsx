@@ -1,11 +1,88 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/site-layout";
-import { ChevronLeft } from "lucide-react";
+import {
+  ChevronLeft,
+  Shield,
+  Star,
+  Ban,
+  HelpCircle,
+  Phone,
+  FileText,
+  Lock,
+  Sparkles,
+  Rocket,
+  CheckCircle2,
+} from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 type PageContent = {
   title: string;
   intro: string;
   sections: { heading: string; body: string | string[] }[];
+};
+
+type PageTheme = {
+  icon: LucideIcon;
+  gradient: string;
+  accent: string;
+  ring: string;
+};
+
+const THEMES: Record<string, PageTheme> = {
+  latest: {
+    icon: Sparkles,
+    gradient: "from-indigo-600 via-blue-600 to-cyan-500",
+    accent: "text-indigo-600",
+    ring: "bg-indigo-50 text-indigo-600 border-indigo-100",
+  },
+  "post-ad": {
+    icon: Rocket,
+    gradient: "from-amber-500 via-orange-500 to-rose-500",
+    accent: "text-orange-600",
+    ring: "bg-orange-50 text-orange-600 border-orange-100",
+  },
+  safety: {
+    icon: Shield,
+    gradient: "from-emerald-600 via-teal-600 to-cyan-600",
+    accent: "text-emerald-600",
+    ring: "bg-emerald-50 text-emerald-600 border-emerald-100",
+  },
+  ratings: {
+    icon: Star,
+    gradient: "from-yellow-500 via-amber-500 to-orange-500",
+    accent: "text-amber-600",
+    ring: "bg-amber-50 text-amber-600 border-amber-100",
+  },
+  prohibited: {
+    icon: Ban,
+    gradient: "from-rose-600 via-red-600 to-orange-600",
+    accent: "text-rose-600",
+    ring: "bg-rose-50 text-rose-600 border-rose-100",
+  },
+  faq: {
+    icon: HelpCircle,
+    gradient: "from-violet-600 via-purple-600 to-fuchsia-600",
+    accent: "text-violet-600",
+    ring: "bg-violet-50 text-violet-600 border-violet-100",
+  },
+  contact: {
+    icon: Phone,
+    gradient: "from-sky-600 via-blue-600 to-indigo-600",
+    accent: "text-sky-600",
+    ring: "bg-sky-50 text-sky-600 border-sky-100",
+  },
+  terms: {
+    icon: FileText,
+    gradient: "from-slate-700 via-slate-600 to-zinc-600",
+    accent: "text-slate-700",
+    ring: "bg-slate-100 text-slate-700 border-slate-200",
+  },
+  privacy: {
+    icon: Lock,
+    gradient: "from-teal-600 via-emerald-600 to-green-600",
+    accent: "text-teal-600",
+    ring: "bg-teal-50 text-teal-600 border-teal-100",
+  },
 };
 
 const PAGES: Record<string, PageContent> = {
@@ -175,15 +252,15 @@ export const Route = createFileRoute("/page/$slug")({
   loader: ({ params }) => {
     const page = PAGES[params.slug];
     if (!page) throw notFound();
-    return page;
+    return { page, slug: params.slug };
   },
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.title} - سوقنا` },
-          { name: "description", content: loaderData.intro },
-          { property: "og:title", content: `${loaderData.title} - سوقنا` },
-          { property: "og:description", content: loaderData.intro },
+          { title: `${loaderData.page.title} - سوقنا` },
+          { name: "description", content: loaderData.page.intro },
+          { property: "og:title", content: `${loaderData.page.title} - سوقنا` },
+          { property: "og:description", content: loaderData.page.intro },
         ]
       : [],
   }),
@@ -201,39 +278,81 @@ export const Route = createFileRoute("/page/$slug")({
 });
 
 function InfoPage() {
-  const page = Route.useLoaderData() as PageContent;
+  const { page, slug } = Route.useLoaderData() as { page: PageContent; slug: string };
+  const theme = THEMES[slug] ?? THEMES.faq;
+
+  const Icon = theme.icon;
 
   return (
     <SiteLayout>
-      <div className="container mx-auto px-4 py-10 max-w-3xl">
-        <Link
-          to="/"
-          className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary mb-6"
-        >
-          <ChevronLeft className="w-4 h-4 rotate-180" />
-          الرئيسية
-        </Link>
-        <h1 className="text-3xl md:text-4xl font-extrabold mb-3">{page.title}</h1>
-        <p className="text-lg text-muted-foreground mb-10 leading-relaxed">{page.intro}</p>
+      <section className={`relative bg-gradient-to-br ${theme.gradient} text-white overflow-hidden`}>
+        <div className="absolute inset-0 opacity-[0.15] bg-[radial-gradient(circle_at_1px_1px,white_1px,transparent_0)] [background-size:22px_22px]" />
+        <div className="absolute -top-24 -right-24 w-72 h-72 bg-white/15 rounded-full blur-3xl" />
+        <div className="absolute -bottom-24 -left-24 w-80 h-80 bg-white/10 rounded-full blur-3xl" />
+        <div className="container mx-auto px-4 py-14 md:py-20 relative">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-1 text-sm text-white/80 hover:text-white mb-6"
+          >
+            <ChevronLeft className="w-4 h-4 rotate-180" />
+            الرئيسية
+          </Link>
+          <div className="flex items-start gap-5 max-w-3xl">
+            <div className="w-16 h-16 rounded-2xl bg-white/15 backdrop-blur border border-white/25 flex items-center justify-center shrink-0 shadow-xl">
+              <Icon className="w-8 h-8 text-white" />
+            </div>
+            <div>
+              <h1 className="text-3xl md:text-5xl font-extrabold mb-3 leading-tight drop-shadow-sm">
+                {page.title}
+              </h1>
+              <p className="text-base md:text-lg text-white/90 leading-relaxed">{page.intro}</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <div className="space-y-8">
+      <div className="container mx-auto px-4 py-12 max-w-3xl -mt-8 relative">
+        <div className="space-y-5">
           {page.sections.map((s, i) => (
-            <section key={i} className="bg-card border rounded-2xl p-6">
-              <h2 className="text-xl font-bold mb-3">{s.heading}</h2>
+            <section
+              key={i}
+              className="bg-card border rounded-2xl p-6 md:p-7 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className={`w-9 h-9 rounded-lg border flex items-center justify-center ${theme.ring}`}>
+                  <span className="font-bold text-sm">{i + 1}</span>
+                </div>
+                <h2 className="text-lg md:text-xl font-bold">{s.heading}</h2>
+              </div>
               {Array.isArray(s.body) ? (
-                <ul className="space-y-2 text-muted-foreground leading-relaxed">
+                <ul className="space-y-3 text-foreground/80 leading-relaxed">
                   {s.body.map((line, j) => (
-                    <li key={j} className="flex gap-2">
-                      <span className="text-primary mt-1">•</span>
+                    <li key={j} className="flex items-start gap-3">
+                      <CheckCircle2 className={`w-5 h-5 shrink-0 mt-0.5 ${theme.accent}`} />
                       <span>{line}</span>
                     </li>
                   ))}
                 </ul>
               ) : (
-                <p className="text-muted-foreground leading-relaxed">{s.body}</p>
+                <p className="text-foreground/80 leading-relaxed">{s.body}</p>
               )}
             </section>
           ))}
+        </div>
+
+        <div className="mt-10 rounded-2xl border bg-gradient-to-br from-muted/50 to-transparent p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <div className="font-bold text-base mb-1">هل تحتاج مساعدة إضافية؟</div>
+            <p className="text-sm text-muted-foreground">فريقنا جاهز للرد على استفساراتك.</p>
+          </div>
+          <Link
+            to="/page/$slug"
+            params={{ slug: "contact" }}
+            className="h-11 px-5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm inline-flex items-center gap-2 hover:opacity-90 transition"
+          >
+            <Phone className="w-4 h-4" />
+            تواصل معنا
+          </Link>
         </div>
       </div>
     </SiteLayout>

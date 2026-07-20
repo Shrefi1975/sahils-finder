@@ -186,6 +186,13 @@
   0%,100% { transform: translate(0,0) scale(1); }
   50% { transform: translate(-40px, -30px) scale(0.9); }
 }
+@keyframes heroKenburns {
+  0% { transform: scale(1.05) translate(0,0); }
+  50% { transform: scale(1.15) translate(-1.5%, -1%); }
+  100% { transform: scale(1.05) translate(0,0); }
+}
+.hero-kenburns { animation: heroKenburns 24s ease-in-out infinite; }
+
 
 @keyframes fade-in {
   from { opacity: 0; transform: translateY(8px); }
