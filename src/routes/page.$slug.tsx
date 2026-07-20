@@ -201,7 +201,8 @@ export const Route = createFileRoute("/page/$slug")({
 });
 
 function InfoPage() {
-  const page = Route.useLoaderData();
+  const page = Route.useLoaderData() as PageContent;
+
   return (
     <SiteLayout>
       <div className="container mx-auto px-4 py-10 max-w-3xl">
