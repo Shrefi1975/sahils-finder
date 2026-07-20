@@ -28,35 +28,44 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
   return (
     <div dir="rtl" className="min-h-screen bg-background flex flex-col">
-      <header className="w-full sticky top-0 z-40 bg-[oklch(0.22_0.08_260)] text-white shadow-md">
-        <div className="w-full px-4 md:px-8 py-3 flex items-center gap-3 md:gap-5">
+      <header className="w-full sticky top-0 z-40 bg-gradient-to-l from-[oklch(0.18_0.07_260)] via-[oklch(0.22_0.08_260)] to-[oklch(0.18_0.07_260)] text-white shadow-lg border-b border-white/5">
+        {/* Top thin utility bar */}
+        <div className="hidden md:block border-b border-white/5 bg-black/20">
+          <div className="w-full px-6 lg:px-10 py-1.5 flex items-center justify-between text-[11px] text-white/60">
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-1"><MapPin className="w-3 h-3 text-[#f5a623]" /> جدة، السعودية</span>
+              <span className="text-white/30">|</span>
+              <span>خدمة عملاء 24/7</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span>مرحباً بك في سوقنا · منصتك للإعلانات المبوبة الفاخرة</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="w-full px-4 md:px-8 lg:px-10 py-3.5 flex items-center gap-3 md:gap-6">
           <Link to="/" className="flex items-center gap-3 shrink-0">
-            <Logo size={44} />
+            <Logo size={46} />
             <div className="hidden sm:block leading-tight">
-              <div className="font-extrabold text-lg text-white">سوقنا</div>
-              <div className="text-[11px] text-white/70">إعلانات مبوبة</div>
+              <div className="font-extrabold text-xl text-white tracking-tight">سوقنا</div>
+              <div className="text-[10px] text-white/60 tracking-widest uppercase">Souqna Marketplace</div>
             </div>
           </Link>
 
           <div className="flex-1 max-w-2xl relative">
-            <Search className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+            <Search className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
             <input
               type="text"
               placeholder="ابحث عن سيارات، عقارات، هواتف..."
-              className="w-full h-11 pr-10 pl-4 rounded-lg bg-white text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#f5a623]/60 transition text-sm"
+              className="w-full h-11 pr-10 pl-4 rounded-xl bg-white/95 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#f5a623]/70 focus:bg-white transition text-sm shadow-sm"
             />
-          </div>
-
-          <div className="hidden md:flex items-center gap-1 text-sm text-white/80">
-            <MapPin className="w-4 h-4" />
-            <span>جدة</span>
           </div>
 
           {user ? (
             <div className="relative">
               <button
                 onClick={() => setMenuOpen((o) => !o)}
-                className="w-10 h-10 rounded-full bg-white/15 text-white flex items-center justify-center font-semibold hover:bg-white/25 transition"
+                className="w-10 h-10 rounded-full bg-white/10 border border-white/20 text-white flex items-center justify-center font-semibold hover:bg-white/20 transition"
                 aria-label="حسابي"
               >
                 {user.email?.[0]?.toUpperCase() ?? <User className="w-5 h-5" />}
@@ -79,7 +88,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           ) : (
             <Link
               to="/auth"
-              className="hidden sm:inline-flex items-center h-10 px-4 rounded-lg border border-white/30 text-white font-medium text-sm hover:bg-white/10 transition"
+              className="hidden sm:inline-flex items-center h-10 px-4 rounded-xl border border-white/25 text-white font-medium text-sm hover:bg-white/10 transition"
             >
               دخول
             </Link>
@@ -88,22 +97,22 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <Link
             to={user ? "/page/$slug" : "/auth"}
             params={{ slug: "post-ad" }}
-            className="inline-flex items-center gap-1.5 h-10 px-3 md:px-4 rounded-lg bg-[#f5a623] text-slate-900 font-semibold text-sm hover:bg-[#e59712] transition shadow"
+            className="inline-flex items-center gap-1.5 h-10 px-3 md:px-5 rounded-xl bg-gradient-to-l from-[#f5a623] to-[#f7b942] text-slate-900 font-bold text-sm hover:shadow-lg hover:shadow-[#f5a623]/30 transition shadow"
           >
             <Plus className="w-4 h-4" />
             <span className="hidden sm:inline">أضف إعلان</span>
           </Link>
         </div>
 
-        <nav className="border-t border-white/10 bg-[oklch(0.19_0.07_260)]">
-          <div className="w-full px-4 md:px-8">
+        <nav className="border-t border-white/5 bg-black/25 backdrop-blur">
+          <div className="w-full px-4 md:px-8 lg:px-10">
             <div className="flex items-center gap-1 overflow-x-auto py-2 scrollbar-none">
               <Link
                 to="/"
-                className={`shrink-0 px-4 py-2 rounded-md text-sm font-medium transition ${
+                className={`shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition ${
                   pathname === "/"
-                    ? "bg-[#f5a623] text-slate-900"
-                    : "text-white/85 hover:bg-white/10"
+                    ? "bg-[#f5a623] text-slate-900 shadow"
+                    : "text-white/80 hover:bg-white/10 hover:text-white"
                 }`}
               >
                 الرئيسية
@@ -115,10 +124,10 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                     key={cat.slug}
                     to="/category/$slug"
                     params={{ slug: cat.slug }}
-                    className={`shrink-0 px-4 py-2 rounded-md text-sm font-medium transition flex items-center gap-1.5 ${
+                    className={`shrink-0 px-4 py-2 rounded-lg text-sm font-medium transition flex items-center gap-1.5 ${
                       active
-                        ? "bg-[#f5a623] text-slate-900"
-                        : "text-white/85 hover:bg-white/10"
+                        ? "bg-[#f5a623] text-slate-900 shadow"
+                        : "text-white/80 hover:bg-white/10 hover:text-white"
                     }`}
                   >
                     <span>{cat.icon}</span>
@@ -150,24 +159,25 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               <div className="text-xs font-semibold text-white/80 mb-3 tracking-wide">تابعنا على</div>
               <div className="flex items-center gap-2.5 flex-wrap">
                 {[
-                  { icon: Facebook, href: "https://facebook.com", label: "فيسبوك", color: "hover:bg-[#1877F2] hover:border-[#1877F2]" },
-                  { icon: Twitter, href: "https://twitter.com", label: "تويتر", color: "hover:bg-black hover:border-black" },
-                  { icon: Instagram, href: "https://instagram.com", label: "انستقرام", color: "hover:bg-gradient-to-tr hover:from-[#f09433] hover:via-[#dc2743] hover:to-[#bc1888] hover:border-transparent" },
-                  { icon: SnapchatIcon, href: "https://snapchat.com", label: "سناب شات", color: "hover:bg-[#FFFC00] hover:text-black hover:border-[#FFFC00]" },
-                  { icon: TikTokIcon, href: "https://tiktok.com", label: "تيك توك", color: "hover:bg-black hover:border-black" },
-                ].map(({ icon: Icon, href, label, color }) => (
+                  { icon: Facebook, href: "https://facebook.com", label: "فيسبوك", bg: "bg-[#1877F2]", text: "text-white" },
+                  { icon: Twitter, href: "https://twitter.com", label: "تويتر", bg: "bg-black", text: "text-white" },
+                  { icon: Instagram, href: "https://instagram.com", label: "انستقرام", bg: "bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888]", text: "text-white" },
+                  { icon: SnapchatIcon, href: "https://snapchat.com", label: "سناب شات", bg: "bg-[#FFFC00]", text: "text-black" },
+                  { icon: TikTokIcon, href: "https://tiktok.com", label: "تيك توك", bg: "bg-black", text: "text-white" },
+                ].map(({ icon: Icon, href, label, bg, text }) => (
                   <a
                     key={label}
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className={`w-11 h-11 rounded-full bg-white/5 border border-white/15 flex items-center justify-center text-white/80 hover:text-white hover:scale-110 transition-all duration-200 ${color}`}
+                    className={`w-11 h-11 rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-200 ${bg} ${text}`}
                   >
                     <Icon className="w-[18px] h-[18px]" />
                   </a>
                 ))}
               </div>
+
 
             </div>
 
