@@ -1,12 +1,11 @@
 import { useState } from "react";
-import { X, MessageCircle, Megaphone } from "lucide-react";
+import { X, MessageCircle, Rocket } from "lucide-react";
 
 export function FloatingSales() {
   const [open, setOpen] = useState(true);
-  const phoneDisplay = "0566175512";
   const phoneIntl = "966566175512";
   const message = encodeURIComponent(
-    "مرحباً، أرغب في نشر إعلاني على منصة سوقنا والوصول لأكبر عدد من المشترين في السعودية.",
+    "مرحباً، أرغب في الحصول على منصة إعلانات مبوبة احترافية قابلة للتخصيص بالكامل.",
   );
   const waLink = `https://wa.me/${phoneIntl}?text=${message}`;
 
@@ -15,9 +14,9 @@ export function FloatingSales() {
       <button
         onClick={() => setOpen(true)}
         className="fixed bottom-6 left-6 z-50 w-14 h-14 rounded-full bg-primary text-primary-foreground shadow-2xl flex items-center justify-center hover:scale-105 transition"
-        aria-label="فتح بطاقة انشر إعلانك"
+        aria-label="فتح بطاقة امتلك منصتك"
       >
-        <Megaphone className="w-6 h-6" />
+        <Rocket className="w-6 h-6" />
       </button>
     );
   }
@@ -35,14 +34,14 @@ export function FloatingSales() {
         </button>
         <div className="relative">
           <div className="flex items-center gap-2 mb-2">
-            <Megaphone className="w-5 h-5" />
-            <div className="text-xs font-semibold opacity-90">انشر إعلانك الآن</div>
+            <Rocket className="w-5 h-5" />
+            <div className="text-xs font-semibold opacity-90">امتلك منصتك الإعلانية الاحترافية</div>
           </div>
           <div className="font-bold text-lg leading-tight mb-1">
-            بِع أسرع مع سوقنا
+            نظام متكامل، سريع، وقابل للتخصيص بالكامل
           </div>
           <p className="text-sm opacity-90 mb-4 leading-relaxed">
-            تواصل معنا مباشرة لنشر إعلانك والوصول لآلاف المشترين في المملكة يومياً.
+            احصل على منصة إعلانات مبوبة بهوية علامتك التجارية، جاهزة للانطلاق خلال أيام.
           </p>
           <a
             href={waLink}
@@ -51,7 +50,7 @@ export function FloatingSales() {
             className="w-full h-11 rounded-lg bg-white text-primary font-semibold text-sm flex items-center justify-center gap-2 hover:bg-white/95 transition"
           >
             <MessageCircle className="w-4 h-4" />
-            واتساب: {phoneDisplay}
+            تواصل مع المطور
           </a>
         </div>
       </div>
