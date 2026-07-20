@@ -18,7 +18,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const featured = [...allListings].sort(() => 0.5 - Math.random()).slice(0, 8);
+  // Deterministic selection to avoid SSR/CSR hydration mismatch (React #418)
+  const featured = allListings.slice(0, 8);
 
   return (
     <SiteLayout>
