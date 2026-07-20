@@ -278,8 +278,9 @@ export const Route = createFileRoute("/page/$slug")({
 });
 
 function InfoPage() {
-  const { page, slug } = Route.useLoaderData();
+  const { page, slug } = Route.useLoaderData() as { page: PageContent; slug: string };
   const theme = THEMES[slug] ?? THEMES.faq;
+
   const Icon = theme.icon;
 
   return (
