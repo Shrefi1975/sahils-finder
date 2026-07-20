@@ -66,6 +66,8 @@ function Home() {
           ))}
         </div>
       </section>
+
+      <FloatingSales />
     </SiteLayout>
   );
 }
